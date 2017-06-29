@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>请继续填写借贷信息</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>继续填写借贷信息</h1>
+        </div>
+        <div class="bodypart">
+            <form action="" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label for="quota" class=" col-sm-4 col-lg-4 col-md-4 control-label">借贷额度</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="quota" class="form-control required" placeholder="？？？？">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="usage" class="col-sm-4 col-lg-4 col-md-4 control-label">借贷用途</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="usage" class="form-control required" placeholder="请输入贷款用途">
+                    </div>
+
+                    <!--                radio的ID未写-->
+                </div>
+                <div class="form-group">
+                    <label for="ways" class="col-sm-4 col-lg-4 col-md-4 control-label">还款方式</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="radio">一次性还清<br/>
+                        <input type="radio">等额本息分期还款<br/>
+                        <input type="radio">等额本金分期还款<br/>
+                        <input type="radio">活期还款<br/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dealine" class="col-sm-4 col-lg-4 col-md-4 control-label">贷款时间</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="deadline" class="form-control required" placeholder="请输入贷款期限">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="source" class=" col-sm-4 col-lg-4 col-md-4 control-label">还款来源</label>
+                    <div class="col-sm-8 col-lg-4 col-md-4">
+                        <input type="text" id="source" class="form-control required" placeholder="请在此输入公司还款来源">
+                    </div>
+                </div>
+                <div class="form-group divCenter">
+                    <button class="btn btn-default" type="submit" id="createinfo2">下一步</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

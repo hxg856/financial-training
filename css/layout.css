@@ -1,0 +1,16 @@
+.header {
+    text-align: center;
+}
+
+.divCenter {
+    text-align: center;
+}
+
+.divCenter * {
+    display: inline-block;
+}
+
+#tiaokuan {
+    height: 500px;
+    overflow: scroll;
+}
