@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+<body>
+    <span>用户名</span><input type="number" id="userID" />
+    <span>密码</span><input type="password" id="userPassword" />
+    <input type="submit" id="submit" />
+    <input type="submit" id="register" />
+    <input type="submit" id="exit" />
+    <div></div>
+
+
+    <span>公司名字</span><input type="text" id="companyName" />
+    <span>公司法人</span><input type="text" id="legalName" />
+    <span>公司性质</span><input type="text" id="companyNature" />
+    <span>主营业务</span><input type="text" id="mainBusiness" />
+    <span>贷款原因</span><input type="text" id="loanReason" />
+
+    <input type="submit" id="entry_company" />
+
+    <div>往下是特定搜索：</div>
+    <span>公司ID</span><input type="text" id="companyID" />
+    <div></div>
+    <span>删除公司</span><input type="submit" id="delete_company" />
+    <div></div>
+    <span>特定查找</span><input type="submit" id="search_company" />
+    <div>修改公司信息</div>
+    <span>key</span><input type="text" id="key" /><span>value</span><input type="text" id="value" />
+    <input type="submit" id="modify_company" />
+
+    <div>往下是贷款信息的搜索</div>
+    <span>增加贷款信息</span><input type="submit" id="submit_loan" />
+    <div></div>
+    <span>删除公司</span><input type="submit" id="delete_loan" />
+    <div></div>
+    <span>查找公司</span><input type="submit" id="search_loan" />
+    <div></div>
+    <div>修改公司信息</div>
+    <span>key</span><input type="text" id="loanKey" /><span>value</span><input type="text" id="loanValue" />
+    <input type="submit" id="modify_loan" />
+
+    <div>
+    </div>
+    <span>验证公司信息</span><input type="submit" id="loan_information_check" />
+
+    <div>以下爲生成報告</div>
+    <input type="submit" id="result" />
+</body>
+
+<script>
+    $(document).ready(() => {
+        $("#submit").click(() => {
+            let userID = $("#userID").val()
+            let userPassword = $("#userPassword").val()
+            let data = {
+                userID: userID,
+                userPassword: userPassword
+            }
+            console.log(data)
+            $.ajax({
+                url: "/login",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $("#register").click(() => {
+            let data = {
+                userID: "1111111111111111111",
+                userPassword: 666667,
+                username: "a",
+                userPosition: 2
+            }
+            console.log(data)
+            $.ajax({
+                url: "/register",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $('#exit').click(() => {
+            let data = {
+                userID: "1111111111111111111"
+            }
+            console.log(data)
+            $.ajax({
+                url: "/exit",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $('#entry_company').click(() => {
+            let a = $("#companyName").val()
+            let b = $("#legalName").val()
+            let c = $("#companyNature").val()
+            let d = $("#mainBusiness").val()
+            let e = $("#loanReason").val()
+            let data = {
+                companyName: a,
+                legalName: b,
+                companyNature: c,
+                mainBusiness: d,
+                loanReason: e
+            }
+            console.log(data)
+            $.ajax({
+                url: "/entry_company",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $('#delete_company').click(() => {
+            var companyID = $("#companyID").val()
+            let data = {
+                companyID: companyID
+            }
+            console.log(data)
+            $.ajax({
+                url: "/delete_company",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $('#search_company').click(() => {
+            var companyID = $("#companyID").val()
+            let data = {
+                companyID: companyID
+            }
+            console.log(data)
+            $.ajax({
+                url: "/search_company",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $("#modify_company").click(() => {
+            var companyID = $("#companyID").val()
+            var key = $("#key").val()
+            var value = $("#value").val()
+            let data = {
+                companyID: companyID,
+                key: key,
+                value: value
+            }
+            console.log(data)
+            $.ajax({
+                url: "/modify_company",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $("#submit_loan").click(() => {
+            let data = {
+                companyID: "818adf06ca654e728fc20dc1aebc5bb3",
+                loanCredit: 1,
+                loanAim: "qwe",
+                repaymentMethod: 1,
+                repaymentTime: 1,
+                repaymentSource: "123",
+                characterClass: 2,
+                companyAchievement: {
+                    pal: 1,
+                    sum: 123
+                },
+                historicalProfit: {
+                    twelfth: 10,
+                    sixth: 10,
+                    third: 11,
+                    first: 1
+                },
+                historicalCredit: {
+                    loanOrNot: true,
+                    repayOrNot: true
+                },
+                mortgage: "123"
+            }
+            console.log(data)
+            $.ajax({
+                url: "/submit_loan",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $("#delete_loan").click(() => {
+            var companyID = $("#companyID").val()
+            let data = {
+                companyID: companyID,
+            }
+            console.log(data)
+            $.ajax({
+                url: "/delete_loan",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $('#search_loan').click(() => {
+            var companyID = $("#companyID").val()
+            let data = {
+                companyID: companyID
+            }
+            console.log(data)
+            $.ajax({
+                url: "/search_loan",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $("#modify_loan").click(() => {
+            var companyID = $("#companyID").val()
+            var key = $("#loanKey").val()
+            var value = $("#loanValue").val()
+            let data = {
+                companyID: companyID,
+                key: "historicalProfit",
+                value: {
+                    twelfth: 200000,
+                    ninth: 10000,
+                    sixth: 100,
+                    third: 200,
+                    first: 300
+                }
+            }
+            console.log(data)
+            $.ajax({
+                url: "/modify_loan",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $("#loan_information_check").click(() => {
+            let data = {
+                loanCredit: -11,
+                repaymentMethod: 1,
+                repaymentTime: 1,
+            }
+            console.log(data)
+            $.ajax({
+                url: "/loan_information_check",
+                type: "POST",
+                dataType: "json",
+                data: data,
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+        $("#result").click(() => {
+            var companyID = $("#companyID").val()
+            $.ajax({
+                url: "/generate_report",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    companyID: companyID
+                },
+                success: (res) => {
+                    console.log("success", res)
+                },
+                error: (res) => {
+                    console.log("error", res)
+                }
+            })
+        })
+    })
+</script>
+
+</html>
