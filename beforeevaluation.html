@@ -6,6 +6,7 @@
     <title>请仔细阅读以下条款...</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/layout.css">
+    <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -22,16 +23,42 @@
                 xxxxxxxxxxxxxxxxxxxxxxxxxx
             </div>
 -->
-            <iframe src="tiaokuan.txt" frameborder="0" width="600px" height="400px"></iframe>
+            <iframe src="tiaokuan.txt" frameborder="1" width="600px" height="400px"></iframe>
 
-            <div style="display:block;">
-                <input type="radio" name="ensure">我已了解详细流程，确定进行下一步操作<br/>
+            <div style="display:block">
+                <input type="checkbox" id="ensure"><span>我已了解详细流程，确定进行下一步操作</span><br/>
             </div>
             <div style="display:block;">
-                <button class="btn btn-default">确定并进行下一步</button>
+                <button class="btn btn-default" id="next">确定并进行下一步</button>
             </div>
         </div>
     </div>
+    <script>
+        $(function() {
+            //            $("#ensure + span").click(function() {
+            //                //alert($("#ensure").is(":checked"));
+            //                if ($("#ensure").is(":checked")) {
+            //                    $("#ensure").attr("checked", false);
+            //                } else {
+            //                    $("#ensure").attr("checked", true);
+            //                }
+            //            });
+            $(document).on("click", "#ensure+span", function() {
+                if ($("#ensure").is(":checked")) {
+                    $("#ensure").attr("checked", false);
+                } else {
+                    $("#ensure").attr("checked", true);
+                }
+            });
+            $("#next").click(function() {
+                if ($("#ensure").is(":checked")) {
+                    window.location.href = "enterinfo1.html";
+                } else {
+                    alert("抱歉，请仔细阅读条款并同意条款！");
+                }
+            })
+        });
+    </script>
 </body>
 
 </html>
