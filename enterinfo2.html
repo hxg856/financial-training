@@ -6,6 +6,7 @@
     <title>请继续填写借贷信息</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/layout.css">
+    <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -14,11 +15,11 @@
             <h1>继续填写借贷信息</h1>
         </div>
         <div class="bodypart">
-            <form action="" method="post" class="form-horizontal">
+            <div class="form-horizontal">
                 <div class="form-group">
                     <label for="quota" class=" col-sm-4 col-lg-4 col-md-4 control-label">借贷额度</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
-                        <input type="text" id="quota" class="form-control required" placeholder="？？？？">
+                        <input type="text" id="quota" class="form-control required" placeholder="请自此输入您的借贷额度（万元为单位）">
                     </div>
                 </div>
                 <div class="form-group">
@@ -32,16 +33,18 @@
                 <div class="form-group">
                     <label for="ways" class="col-sm-4 col-lg-4 col-md-4 control-label">还款方式</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
-                        <input type="radio">一次性还清<br/>
-                        <input type="radio">等额本息分期还款<br/>
-                        <input type="radio">等额本金分期还款<br/>
-                        <input type="radio">活期还款<br/>
+                        <select name="ways" id="wayselect">
+                            <option value="1">一次性还清</option>
+                            <option value="2">等额本息分期还款</option>
+                            <option value="3">等额本金分期还款</option>
+                            <option value="4">活期还款</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="dealine" class="col-sm-4 col-lg-4 col-md-4 control-label">贷款时间</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
-                        <input type="text" id="deadline" class="form-control required" placeholder="请输入贷款期限">
+                        <input type="text" id="deadline" class="form-control required" placeholder="请输入贷款期限(以月份为单位)">
                     </div>
                 </div>
                 <div class="form-group">
@@ -53,10 +56,17 @@
                 <div class="form-group divCenter">
                     <button class="btn btn-default" type="submit" id="createinfo2">下一步</button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-    </div>
+    <script>
+        $(function() {
+            $("#createinfo2").click(function() {
+                var ways = $("#wayselect").val();
+                alert(ways);
+            })
+        })
+    </script>
 </body>
 
 </html>

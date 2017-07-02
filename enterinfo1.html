@@ -6,6 +6,7 @@
     <title>请填写客户信息</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/layout.css">
+    <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -52,7 +53,42 @@
             </div>
         </div>
     </div>
-    </div>
+    <script>
+        $(function() {
+            $("#createinfo1").click(function() {
+                //还没有获取companyID
+                var comName = $("#companyName").val();
+                var leName = $("#corporation").val();
+                var comNature = $("#nature").val();
+                var mBus = $("#business").val();
+                var loanRe = $("#reason").val();
+
+                var data = {
+                    companyName: comName,
+                    legalName: leName,
+                    companyNature: comNature,
+                    mainBusiness: mBus,
+                    loanReason: loanRe
+                };
+                console.log(data);
+                $.ajax({
+                    url: "http://119.29.236.25/entry_company",
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    success: function(res) {
+                        console.log(res);
+                        window.location.href = "enterinfo2.html";
+
+                    },
+                    error: function(res) {
+                        alert("请求失败！")
+                    }
+                });
+            });
+        })
+
+    </script>
 </body>
 
 </html>
