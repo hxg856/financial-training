@@ -19,32 +19,32 @@
                 <div class="form-group">
                     <label for="companyName" class=" col-sm-4 col-md-4 col-lg-4 control-label">借贷主体（公司名称）</label>
                     <div class="col-sm-8">
-                        <input type="text" id="companyName" class="form-control required col-sm-8 col-md-4 col-lg-4" placeholder="请在此输入公司完整名称">
+                        <input type="text" id="companyName" class="form-control required col-sm-8 col-md-4 col-lg-4" placeholder="请在此输入公司完整名称" maxlength="30">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="corporation" class="col-sm-4 col-md-4 col-lg-4 control-label">法人代表（责任组织）</label>
                     <div class="col-sm-8">
-                        <input type="text" id="corporation" class="form-control required col-sm-8 col-md-4 col-lg-4" placeholder="请正确输入法人代表">
+                        <input type="text" id="corporation" class="form-control required col-sm-8 col-md-4 col-lg-4" placeholder="请正确输入法人代表" maxlength="20">
                     </div>
 
                 </div>
                 <div class="form-group">
                     <label for="nature" class="col-sm-4 col-md-4 col-lg-4 control-label">公司性质</label>
                     <div class="col-sm-8">
-                        <input type="text" id="nature" class="form-control required col-sm-8 col-md-4 col-lg-4" placeholder="请在此输入公司性质，如：股份有限公司等">
+                        <input type="text" id="nature" class="form-control required col-sm-8 col-md-4 col-lg-4" placeholder="请在此输入公司性质，如：股份有限公司等" maxlength="20">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="business" class="col-sm-4 col-md-4 col-lg-4 control-label">主要业务</label>
                     <div class="col-sm-8">
-                        <input type="text" id="business" class="form-control required col-sm-8 col-md-4 col-lg-4" placeholder="请输入主要的业务">
+                        <input type="text" id="business" class="form-control required col-sm-8 col-md-4 col-lg-4" placeholder="请输入主要的业务" maxlength="30">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="reason" class=" col-sm-4 col-md-4 col-lg-4 control-label">借贷原因</label>
                     <div class="col-sm-8">
-                        <input type="text" id="reason" class="form-control required col-sm-8 col-md-4 col-lg-4" placeholder="请在此输入公司本次借贷的原因">
+                        <input type="text" id="reason" class="form-control required col-sm-8 col-md-4 col-lg-4" placeholder="请在此输入公司本次借贷的原因" maxlength="50">
                     </div>
                 </div>
                 <div class="form-group divCenter">
@@ -55,6 +55,10 @@
     </div>
     <script>
         $(function() {
+            var pattern20 = /^(\w*|[\u4e00-\u9fa5]){0,20}$/;
+            var pattern30 = /^(\w*|[\u4e00-\u9fa5]){0,30}$/;
+            var pattern50 = /^(\w*|[\u4e00-\u9fa5]){0,50}$/;
+
             $("#createinfo1").click(function() {
                 //还没有获取companyID
                 var comName = $("#companyName").val();
@@ -63,6 +67,22 @@
                 var mBus = $("#business").val();
                 var loanRe = $("#reason").val();
 
+                if (!comName) {
+                    alert("公司名称不能为空，请输入最长30位公司名称");
+                    return false;
+                }
+                if (!leName) {
+                    alert("法人代表不能为空，请输入最长30位公司名称");
+                    return false;
+                }
+                if (!comNature) {
+                    alert("公司性质不能为空，请输入最长30位公司名称");
+                    return false;
+                }
+                if (!mBus) {
+                    alert("主要业务不能为空，请输入最长30位公司名称");
+                    return false;
+                }
                 var data = {
                     companyName: comName,
                     legalName: leName,
@@ -78,6 +98,8 @@
                     data: data,
                     success: function(res) {
                         console.log(res);
+                        //还没有记住userid
+                        sessionStorage.setItem("userID", res.data.companyID);
                         window.location.href = "enterinfo2.html";
 
                     },
@@ -87,7 +109,6 @@
                 });
             });
         })
-
     </script>
 </body>
 
