@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> //
 <html lang="en">
 
 <head>
@@ -17,15 +17,15 @@
         <div class="bodypart">
             <div class="form-horizontal">
                 <div class="form-group">
-                    <label for="quota" class=" col-sm-4 col-lg-4 col-md-4 control-label">借贷额度</label>
+                    <label for="quota" class=" col-sm-4 col-lg-4 col-md-4 control-label">借贷额度（万元）</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
-                        <input type="text" id="quota" class="form-control required" placeholder="请自此输入您的借贷额度（万元为单位）">
+                        <input type="text" id="quota" class="form-control required" placeholder="请自此输入您的借贷额度（万元为单位)" maxlength="20">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="usage" class="col-sm-4 col-lg-4 col-md-4 control-label">借贷用途</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
-                        <input type="text" id="usage" class="form-control required" placeholder="请输入贷款用途">
+                        <input type="text" id="usage" class="form-control required" placeholder="请输入贷款用途" maxlength="50">
                     </div>
 
                     <!--                radio的ID未写-->
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dealine" class="col-sm-4 col-lg-4 col-md-4 control-label">贷款时间</label>
+                    <label for="dealine" class="col-sm-4 col-lg-4 col-md-4 control-label">贷款时间（月份）</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
                         <input type="text" id="deadline" class="form-control required" placeholder="请输入贷款期限(以月份为单位)">
                     </div>
@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <label for="source" class=" col-sm-4 col-lg-4 col-md-4 control-label">还款来源</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
-                        <input type="text" id="source" class="form-control required" placeholder="请在此输入公司还款来源">
+                        <input type="text" id="source" class="form-control required" placeholder="请在此输入公司还款来源" maxlength="50">
                     </div>
                 </div>
                 <div class="form-group divCenter">
@@ -62,12 +62,57 @@
     <script>
         $(function() {
             var userID = sessionStorage.getItem("userID");
-            alert(userID);
+            //alert(userID);
             $("#createinfo2").click(function() {
-                var ways = $("#wayselect").val();
-                alert(ways);
-            })
+                if (!$("#quota").val()) {
+                    alert("贷款额度不能为空，请重新输入您的贷款额度");
+                    return false;
+                }
+                if (!$("#usage").val()) {
+                    alert("贷款用途不能为空，请输入您的贷款用途");
+                    return false;
+                }
+                if (!$("#deadline").val()) {
+                    alert("贷款时间不能为空，请输入贷款期限时长");
+                    return false;
+                }
+                if (!$("#source").val()) {
+                    alert("还款来源不能为空，请输入您的主要还款待援");
+                    return false;
+                }
+                if (!testload($("#quota").val())) {
+                    alert("请按照正确的输入格式输入贷款额度");
+                    return false;
+                }
+                if (!testtime($("#deadline").val())) {
+                    alert("请按照正确格式的输入贷款时间（最长贷款时间为20年）");
+                    return false;
+                }
+
+                sessionStorage.setItem("loanCredit", $("#quota").val());
+                sessionStorage.setItem("loanAim", $("#usage").val());
+                sessionStorage.setItem("repaymentMethod", $("#wayselect").val());
+                sessionStorage.setItem("repaymentTime", $("#deadline").val());
+                sessionStorage.setItem("repaymentSource", $("#source").val());
+                //                alert(sessionStorage.getItem("loanCredit"));
+                //                alert(sessionStorage.getItem("loanAim"));
+                //                alert(sessionStorage.getItem("repaymentMethod"));
+                //                alert(sessionStorage.getItem("repaymentTime"));
+                //                alert(sessionStorage.getItem("repaymentSource"));
+                window.location.href = "enterinfo3.html";
+            });
+
+            function testload(quota) {
+                var pattern = /^\d{0,10}$/;
+                return pattern.test(quota);
+            };
+
+            function testtime(quota) {
+                var pattern = /^\d{0,2}$|^(1|2)\d{0,2}$/;
+                return pattern.test(quota);
+            };
         })
+
     </script>
 </body>
 
