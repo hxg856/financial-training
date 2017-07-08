@@ -31,6 +31,9 @@
     <script src="js/verify.js"></script>
     <script>
         $(function() {
+            $.get("nav.html",function(data){
+                $(".container").before(data);
+            });
             $("#search").click(function() {
                 var companyName = $("#searchReport").val();
 
@@ -44,7 +47,7 @@
                 }
                 var data = {
                     companyName: companyName
-                }
+                };
                 $.ajax({
                     url: "http://119.29.236.25/search_report",
                     type: "POST",

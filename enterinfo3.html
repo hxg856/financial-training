@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="palType" class="col-sm-4 col-lg-4 col-md-4 control-label">公司盈利</label>
+                    <label for="pal" class="col-sm-4 col-lg-4 col-md-4 control-label">公司盈利</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
                         <select id="pal">
                                 <option value="1">盈利</option>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="loadOrNot" class="col-sm-4 col-lg-4 col-md-4 control-label">信贷历史</label>
+                    <label for="loanOrNot" class="col-sm-4 col-lg-4 col-md-4 control-label">信贷历史</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
                         <select name="characterClassType" id="loanOrNot">
                                 <option value="true">有</option>
@@ -111,6 +111,9 @@
     <script src="js/verify.js"></script>
     <script>
         $(function() {
+            $.get("nav.html",function(data){
+                $(".container").before(data);
+            });
             $("#createinfo3").click(function() {
                 var historicalProfit = {
                     twelfth: $("#twelfth").val(),
@@ -154,16 +157,6 @@
                     alert("贷款抵押担保不能为空，请重新输入）");
                     return false;
                 }
-                //                console.log(characterClass);
-                //                console.log(companyAchievement);
-                //                console.log(historicalProfit);
-                //                console.log(historicalCredit);
-                //                console.log(mortgage);
-                //                console.log(sessionStorage.getItem("loanCredit"));
-                //                console.log(sessionStorage.getItem("loanAim"));
-                //                console.log(sessionStorage.getItem("repaymentMethod"));
-                //                console.log(sessionStorage.getItem("repaymentTime"));
-                //                console.log(sessionStorage.getItem("repaymentSource"));
 
                 if (!testAccount(historicalProfit.twelfth)) {
                     alert("请按照正确格式的输入过去12月的盈利");
@@ -198,7 +191,7 @@
                     historicalProfit: historicalProfit,
                     historicalCredit: historicalCredit,
                     mortgage: mortgage
-                }
+                };
                 $.ajax({
                     url: "http://119.29.236.25/submit_loan",
                     type: "POST",
@@ -219,8 +212,8 @@
                     type: "POST",
                     dataType: "json",
                     data: data2,
-                    success: function(res) {
-                        console.log("生成报告")；
+                    success: function() {
+                        console.log("生成报告");
                         window.location.href = "home.html";
                     },
                     error: function(res) {

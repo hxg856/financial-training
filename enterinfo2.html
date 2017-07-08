@@ -31,7 +31,7 @@
                     <!--                radio的ID未写-->
                 </div>
                 <div class="form-group">
-                    <label for="ways" class="col-sm-4 col-lg-4 col-md-4 control-label">还款方式</label>
+                    <label for="wayselect" class="col-sm-4 col-lg-4 col-md-4 control-label">还款方式</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
                         <select name="ways" id="wayselect">
                             <option value="1">一次性还清</option>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dealine" class="col-sm-4 col-lg-4 col-md-4 control-label">贷款时间（月份）</label>
+                    <label for="deadline" class="col-sm-4 col-lg-4 col-md-4 control-label">贷款时间（月份）</label>
                     <div class="col-sm-8 col-lg-4 col-md-4">
                         <input type="text" id="deadline" class="form-control required" placeholder="请输入贷款期限(以月份为单位)">
                     </div>
@@ -62,6 +62,9 @@
     <script src="js/verify.js"></script>
     <script>
         $(function() {
+            $.get("nav.html",function(data){
+                $(".container").before(data);
+            });
             var userID = sessionStorage.getItem("userID");
             //alert(userID);
             $("#createinfo2").click(function() {
@@ -95,11 +98,6 @@
                 sessionStorage.setItem("repaymentMethod", $("#wayselect").val());
                 sessionStorage.setItem("repaymentTime", $("#deadline").val());
                 sessionStorage.setItem("repaymentSource", $("#source").val());
-                //                alert(sessionStorage.getItem("loanCredit"));
-                //                alert(sessionStorage.getItem("loanAim"));
-                //                alert(sessionStorage.getItem("repaymentMethod"));
-                //                alert(sessionStorage.getItem("repaymentTime"));
-                //                alert(sessionStorage.getItem("repaymentSource"));
                 window.location.href = "enterinfo3.html";
             });
         })

@@ -39,6 +39,9 @@
     <script src="js/verify.js"></script>
     <script>
         $(function() {
+            $.get("nav.html",function(data){
+                $(".container").before(data);
+            });
             $("#test").click(function() {
                 var userID = $("#userID");
                 var userPassword = $("#userPassword");

@@ -22,6 +22,9 @@
     </div>
     <script>
         $(function() {
+            $.get("nav.html",function(data){
+                $(".container").before(data);
+            });
             $("#revisePassword").click(function() {
                 window.location.href = "revisepassword.html";
             });

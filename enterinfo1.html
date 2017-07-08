@@ -55,8 +55,9 @@
     </div>
     <script>
         $(function() {
-
-
+            $.get("nav.html",function(data){
+                $(".container").before(data);
+            });
             $("#createinfo1").click(function() {
                 //还没有获取companyID
                 var comName = $("#companyName").val();

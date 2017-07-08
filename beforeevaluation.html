@@ -35,14 +35,9 @@
     </div>
     <script>
         $(function() {
-            //            $("#ensure + span").click(function() {
-            //                //alert($("#ensure").is(":checked"));
-            //                if ($("#ensure").is(":checked")) {
-            //                    $("#ensure").attr("checked", false);
-            //                } else {
-            //                    $("#ensure").attr("checked", true);
-            //                }
-            //            });
+            $.get("nav.html",function(data){
+                $(".container").before(data);
+            });
             $(document).on("click", "#ensure+span", function() {
                 if ($("#ensure").is(":checked")) {
                     $("#ensure").attr("checked", false);

@@ -30,6 +30,9 @@
         <script src="js/verify.js"></script>
         <script>
             $(function() {
+                $.get("nav.html",function(data){
+                    $(".container").before(data);
+                });
                 $("#delete").click(function() {
                     var reportID = $("#deleteReport").val();
 
@@ -61,6 +64,7 @@
             })
 
         </script>
+    </div>
 </body>
 
 </html>
