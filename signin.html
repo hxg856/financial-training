@@ -18,7 +18,7 @@
             <div class="bodypart">
                 <div class="form-group">
                     <label for="userID" class="col-sm-4 col-md-4 col-lg-4 control-label">客户账号</label>
-                    <div class="col-sm-8 col-md-4 col-lg-4">
+                    <div class="col-sm-8 col-md-4 col-lg-4" id="xxx">
                         <input type="text" class="form-control" id="userID" placeholder="请输入19位客户账号">
                     </div>
                 </div>
@@ -30,76 +30,80 @@
                 </div>
                 <div class="divCenter">
                     <button id="submit" class="btn btn-default">登陆</button>
+                    <button id="test" class="btn btn-default">测试</button>
                 </div>
             </div>
         </div>
 
     </div>
+    <script src="js/verify.js"></script>
     <script>
         $(function() {
-            $("#submit").click(function() {
-                var userID = $("#userID").val();
-                var userPassword = $("#userPassword").val();
-                if (!userID) {
-                    alert("客户账号不能为空，请输入19位数字客户账号！");
-                    return false;
+            $("#test").click(function() {
+                var userID = $("#userID");
+                var userPassword = $("#userPassword");
+                if (!userID.val()) {
+                    if (!userID.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>客户账号不能为空，请输入19位数字客户账号！</div>");
+                        $("#userID").after($alertInfo);
+                        return false;
+                    }
                 }
-                if (!userPassword) {
-                    alert("客户密码不能为空，请输入6位数字客户账号！");
-                    return false;
+                if (!userPassword.val()) {
+                    if (!userPassword.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>客户密码不能为空，请输入6位数字客户密码！</div>");
+                        $("#userPassword").after($alertInfo);
+                        return false;
+                    }
                 }
-                if (!testUserID(userID)) {
-                    alert("请按照正确格式输入客户账号！");
-                    return false;
+                if (!testUserID(userID.val())) {
+                    if (!userID.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>请按照正确格式输入客户账号！</div>");
+                        $("#userID").after($alertInfo);
+                        return false;
+                    }
                 }
-                if (!testUserPassword(userPassword)) {
-                    alert("请按照正常格式输入客户密码！");
-                    return false;
+                if (!testUserPassword(userPassword.val())) {
+                    if (!userPassword.next().hasClass("bg-danger")) {
+                        var $alertInfo = $("<div class='bg-danger'>请按照正常格式输入客户密码!</div>");
+                        $("#userPassword").after($alertInfo);
+                        return false;
+                    }
                 }
-
                 var data = {
-                    userID: userID,
-                    userPassword: userPassword
+                    userID: userID.val(),
+                    userPassword: userPassword.val()
                 };
-
                 $.ajax({
                     url: "http://119.29.236.25/login",
                     type: "POST",
                     dataType: "json",
                     data: data,
                     success: function(res) {
-                        console.log("success", res);
                         if ((!res.data.error) && res.data.state == "600") {
-                            console.log("恭喜你，登录成功！！！！");
                             window.location.href = "home.html";
-                            //跳转代码。
                         };
                         if (res.data.error) {
                             switch (res.data.state) {
                                 case 601:
-                                    alert("密码错误，请重新输入！");
+                                    if (!userPassword.next().hasClass("bg-danger")) {
+                                        var $alertInfo = $("<div class='bg-danger'>客户密码错误，请输入6位数字客户密码！</div>");
+                                        $("#userPassword").after($alertInfo);
+                                        return false;
+                                    }
                                     break;
                                 case 604:
                                     alert("客户账号错误，请重新输入！");
                                     break;
+                                case 613:
+                                    alert("账户已经登录，请不要重复登录！");
                             }
                         }
                     },
-                    error: function(res) {
-                        console.log("error", res);
-                    }
+                    error: function(res) {}
                 });
-            });
+            })
 
-            function testUserID(name) {
-                var pattern = /^\d{19}$/;
-                return pattern.test(name);
-            };
-
-            function testUserPassword(pass) {
-                var pattern = /^\d{6}$/;
-                return pattern.test(pass);
-            };
         });
 
     </script>

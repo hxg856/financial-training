@@ -6,7 +6,6 @@
     <title>删除报告</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/layout.css">
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
 </head>
 
@@ -28,6 +27,40 @@
                 </div>
             </div>
         </div>
+        <script src="js/verify.js"></script>
+        <script>
+            $(function() {
+                $("#delete").click(function() {
+                    var reportID = $("#deleteReport").val();
+
+                    if (!reportID) {
+                        alert("公司ID不能为空，请重新输入）");
+                        return false;
+                    }
+                    if (!testUserID(reportID)) {
+                        alert("请按照正确格式的公司ID");
+                        return false;
+                    }
+                    var data = {
+                        reportID: reportID
+                    };
+                    $.ajax({
+                        url: "http://119.29.236.25/delete_report",
+                        type: "POST",
+                        dataType: "json",
+                        data: data,
+                        success: function(res) {
+                            //删除报告
+                        },
+                        error: function(res) {
+
+                        }
+                    });
+
+                })
+            })
+
+        </script>
 </body>
 
 </html>

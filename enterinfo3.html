@@ -108,6 +108,7 @@
             </div>
         </div>
     </div>
+    <script src="js/verify.js"></script>
     <script>
         $(function() {
             $("#createinfo3").click(function() {
@@ -205,17 +206,27 @@
                     data: data,
                     success: function(res) {
                         console.log(res);
-                        window.location.href = "home.html";
                     },
                     error: function(res) {
                         console.log(res);
                     }
                 });
-
-                function testAccount(Account) {
-                    var pattern = /^\d{0,8}$|^-\d{0,8}$/;
-                    return pattern.test(Account);
+                var data2 = {
+                    companyID: sessionStorage.getItem("userID")
                 };
+                $.ajax({
+                    url: "http://119.29.236.25/generate_report",
+                    type: "POST",
+                    dataType: "json",
+                    data: data2,
+                    success: function(res) {
+                        console.log("生成报告")；
+                        window.location.href = "home.html";
+                    },
+                    error: function(res) {
+                        console.log(res);
+                    }
+                })
             })
         });
 

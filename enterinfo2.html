@@ -59,6 +59,7 @@
             </div>
         </div>
     </div>
+    <script src="js/verify.js"></script>
     <script>
         $(function() {
             var userID = sessionStorage.getItem("userID");
@@ -101,16 +102,6 @@
                 //                alert(sessionStorage.getItem("repaymentSource"));
                 window.location.href = "enterinfo3.html";
             });
-
-            function testload(quota) {
-                var pattern = /^\d{0,10}$/;
-                return pattern.test(quota);
-            };
-
-            function testtime(quota) {
-                var pattern = /^\d{0,2}$|^(1|2)\d{0,2}$/;
-                return pattern.test(quota);
-            };
         })
 
     </script>

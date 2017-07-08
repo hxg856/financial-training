@@ -6,7 +6,6 @@
     <title>查询报告</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/layout.css">
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
 </head>
 
@@ -24,11 +23,44 @@
                     </div>
                 </div>
                 <div class="divCenter">
-                    <button id="submit" class="btn btn-default">查询</button>
+                    <button id="search" class="btn btn-default">查询</button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="js/verify.js"></script>
+    <script>
+        $(function() {
+            $("#search").click(function() {
+                var companyName = $("#searchReport").val();
+
+                if (!companyName) {
+                    alert("公司ID不能为空，请重新输入）");
+                    return false;
+                }
+                if (!testUserID(companyName)) {
+                    alert("请按照正确格式的公司ID");
+                    return false;
+                }
+                var data = {
+                    companyName: companyName
+                }
+                $.ajax({
+                    url: "http://119.29.236.25/search_report",
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    success: function(res) {
+                        //存报告，显示报告
+                    },
+                    error: function(res) {
+
+                    }
+                });
+            })
+        })
+
+    </script>
 </body>
 
 </html>
