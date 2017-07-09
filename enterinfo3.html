@@ -83,7 +83,7 @@
                     <div class="col-sm-8 col-lg-4 col-md-4">
                         <select name="characterClassType" id="loanOrNot">
                                 <option value="true">有</option>
-                                <option value="false"></option>
+                                <option value="false">无</option>
                         </select>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                     <div class="col-sm-8 col-lg-4 col-md-4">
                         <select id="repayOrNot">
                                 <option value="true">是</option>
-                                <option value="false"></option>
+                                <option value="false">否</option>
                         </select>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
     <script src="js/verify.js"></script>
     <script>
         $(function() {
-            $.get("nav.html",function(data){
+            $.get("nav.html", function(data) {
                 $(".container").before(data);
             });
             $("#createinfo3").click(function() {
@@ -180,7 +180,7 @@
                 }
 
                 var data = {
-                    companyID: sessionStorage.getItem("userID"),
+                    companyID: sessionStorage.getItem("companyID"),
                     loanCredit: sessionStorage.getItem("loanCredit"),
                     loanAim: sessionStorage.getItem("loanAim"),
                     repaymentMethod: sessionStorage.getItem("repaymentMethod"),
@@ -205,7 +205,7 @@
                     }
                 });
                 var data2 = {
-                    companyID: sessionStorage.getItem("userID")
+                    companyID: sessionStorage.getItem("companyID")
                 };
                 $.ajax({
                     url: "http://119.29.236.25/generate_report",

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <button id="searchreport">searchreport</button>
+        <button id="entry_company">entrycompany</button>
+        <button id="submit_loan">submit_loan</button>
+        <button id="generate">generatecompany</button>
+        <button id="search_company">search_company带参数</button>
+        <button id="search_company1">search_company无参数</button>
+        <button id="search_loan">search_loan带参数</button>
+        <button id="search_loan1">search_loan无参数</button>
+    </div>
+    <script>
+        $(function() {
+            var companyID = "f6ce0ae23dfc4b3bebbd1c7e172872e8";
+            $("#searchreport").click(function() {
+                var data = {
+                    companyName: "hxg"
+                };
+                $.ajax({
+                    url: "http://119.29.236.25/search_report",
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    success: function(res) {
+                        console.log("success", res)
+                    },
+                    error: function(res) {
+                        console.log("error", res)
+                    }
+                });
+            });
+            $("#entry_company").click(function() {
+                var a = "hxg";
+                var b = "legal";
+                var c = "1";
+                var d = "mainBusiness";
+                var e = "loanReason";
+                var data = {
+                    companyName: a,
+                    legalName: b,
+                    companyNature: c,
+                    mainBusiness: d,
+                    loanReason: e
+                };
+                $.ajax({
+                    url: "http://119.29.236.25/entry_company",
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    success: (res) => {
+                        console.log("success", res);
+                        companyID = res.data.companyID;
+                    },
+                    error: (res) => {
+                        console.log("error", res)
+                    }
+                })
+            });
+            $("#generate").click(function() {
+                var data = {
+                    companyID: companyID
+                };
+                $.ajax({
+                    url: "http://119.29.236.25/generate_report",
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    success: function(res) {
+                        console.log("success", res)
+                    },
+                    error: function(res) {
+                        console.log("error", res)
+                    }
+
+                })
+            });
+            $("#submit_loan").click(function() {
+                var historicalProfit = {
+                    twelfth: 12,
+                    ninth: 9,
+                    sixth: 6,
+                    third: 3,
+                    first: 1
+
+                };
+                var mortgage = "mortgage";
+                var characterClass = "1";
+                var companyAchievement = {
+                    pal: 1,
+                    sum: 1
+                };
+                var historicalCredit = {
+                    loanOrNot: true,
+                    repayOrNot: false
+                };
+                var data = {
+                    companyID: companyID,
+                    loanCredit: 1,
+                    loanAim: 1000,
+                    repaymentMethod: 1,
+                    repaymentTime: 12,
+                    repaymentSource: "repaymentSource",
+                    characterClass: characterClass,
+                    companyAchievement: companyAchievement,
+                    historicalProfit: historicalProfit,
+                    historicalCredit: historicalCredit,
+                    mortgage: mortgage
+                };
+                $.ajax({
+                    url: "http://119.29.236.25/submit_loan",
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    success: function(res) {
+                        console.log(res);
+                    },
+                    error: function(res) {
+                        console.log(res);
+                    }
+                });
+            });
+            $("#search_company").click(function() {
+                var data = {
+                    companyID: companyID
+                }
+                $.ajax({
+                    url: "http://119.29.236.25/search_company",
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    success: function(res) {
+                        console.log("success", res)
+                    },
+                    error: function(res) {
+                        console.log("error", res)
+                    }
+
+                });
+            });
+            $("#search_company1").click(function() {
+                $.ajax({
+                    url: "http://119.29.236.25/search_company",
+                    type: "POST",
+                    dataType: "json",
+                    success: function(res) {
+                        console.log("success", res)
+                    },
+                    error: function(res) {
+                        console.log("error", res)
+                    }
+
+                });
+            });
+            $("#search_loan").click(function() {
+                var data = {
+                    companyID: companyID
+                }
+                $.ajax({
+                    url: "http://119.29.236.25/search_loan",
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    success: function(res) {
+                        console.log("success", res)
+                    },
+                    error: function(res) {
+                        console.log("error", res)
+                    }
+
+                });
+            });
+            $("#search_loan1").click(function() {
+                $.ajax({
+                    url: "http://119.29.236.25/search_loan",
+                    type: "POST",
+                    dataType: "json",
+                    success: function(res) {
+                        console.log("success", res)
+                    },
+                    error: function(res) {
+                        console.log("error", res)
+                    }
+
+                });
+            });
+
+
+
+        })
+
+    </script>
+</body>
+
+</html>

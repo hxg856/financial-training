@@ -30,7 +30,7 @@
         <script src="js/verify.js"></script>
         <script>
             $(function() {
-                $.get("nav.html",function(data){
+                $.get("nav.html", function(data) {
                     $(".container").before(data);
                 });
                 $("#delete").click(function() {
@@ -40,10 +40,10 @@
                         alert("公司ID不能为空，请重新输入）");
                         return false;
                     }
-                    if (!testUserID(reportID)) {
-                        alert("请按照正确格式的公司ID");
-                        return false;
-                    }
+                    //                    if (!testUserID(reportID)) {
+                    //                        alert("请按照正确格式的公司ID");
+                    //                        return false;
+                    //                    }
                     var data = {
                         reportID: reportID
                     };

@@ -55,7 +55,7 @@
     </div>
     <script>
         $(function() {
-            $.get("nav.html",function(data){
+            $.get("nav.html", function(data) {
                 $(".container").before(data);
             });
             $("#createinfo1").click(function() {
@@ -98,7 +98,7 @@
                     success: function(res) {
                         console.log(res);
                         //还没有记住userid
-                        sessionStorage.setItem("userID", res.data.companyID);
+                        sessionStorage.setItem("companyID", res.data.companyID);
                         window.location.href = "enterinfo2.html";
 
                     },
@@ -108,6 +108,7 @@
                 });
             });
         })
+
     </script>
 </body>
 

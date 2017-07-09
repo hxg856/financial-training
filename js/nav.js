@@ -7,7 +7,7 @@ $(function () {
         success: function (res) {
             //console.log(res);
             userID = res.data.user.userID;
-            var userName = "res.data.user.usename";
+            var userName = res.data.user.usename;
             var $name = $(" <p class='navbar-text navbar-left' style='font-size:1.2em'></p>");
             $name.text(userName);
             $("#afname").before($name);

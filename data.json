@@ -1,0 +1,28 @@
+{
+    "companyID": "人生有限公司",
+    "loanCredit": "1000",
+    "loanAim": "开演唱会",
+    "repaymentMethod": "一次性还清",
+    "repaymentTime": "12",
+    "repaymentSource": "borrow",
+    "characterClass": "优秀",
+    "companyAchievement": {
+        "pal": "盈利",
+        "sum": "100万",
+        "new": "优秀"
+    },
+    "historicalProfit": {
+        "twelfth": "12",
+        "ninth": "9",
+        "sixth": "6",
+        "third": "3",
+        "first": "1",
+        "new": "优秀"
+    },
+    "historicalCredit": {
+        "loanOrNot": "没有信贷历史",
+        "repayOrNot": "已经还清"
+    },
+    "mortgage": "符合",
+    "grade": "99"
+}

@@ -39,7 +39,7 @@
     <script src="js/verify.js"></script>
     <script>
         $(function() {
-            $.get("nav.html",function(data){
+            $.get("nav.html", function(data) {
                 $(".container").before(data);
             });
             $("#test").click(function() {
@@ -100,6 +100,7 @@
                                     break;
                                 case 613:
                                     alert("账户已经登录，请不要重复登录！");
+                                    window.location.href = "home.html"
                             }
                         }
                     },
