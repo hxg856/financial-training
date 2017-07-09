@@ -158,35 +158,74 @@ $(function () {
             }
             if (loan.CompanyAchievement.Pal == 1) {
                 if (loan.CompanyAchievement.Sum <= 100) {
-
+                    $("#cGrede4").text(5);
                 }
                 if (loan.CompanyAchievement.Sum > 100 && loan.CompanyAchievement.Sum <= 200) {
-
+                    $("#cGrede4").text(10);
                 }
                 if (loan.CompanyAchievement.Sum > 100 && loan.CompanyAchievement.Sum <= 200) {
-
+                    $("#cGrede4").text(15);
                 }
                 if (loan.CompanyAchievement.Sum > 200 && loan.CompanyAchievement.Sum <= 300) {
-
+                    $("#cGrede4").text(20);
                 }
                 if (loan.CompanyAchievement.Sum > 300 && loan.CompanyAchievement.Sum <= 500) {
-
+                    $("#cGrede4").text(25);
                 }
                 if (loan.CompanyAchievement.Sum > 500 && loan.CompanyAchievement.Sum <= 1000) {
-
+                    $("#cGrede4").text(30);
                 }
                 if (loan.CompanyAchievement.Sum > 1000 && loan.CompanyAchievement.Sum <= 3000) {
-
+                    $("#cGrede4").text(35);
                 }
                 if (loan.CompanyAchievement.Sum > 3000 && loan.CompanyAchievement.Sum <= 5000) {
-
+                    $("#cGrede4").text(40);
                 }
                 if (loan.CompanyAchievement.Sum > 5000 && loan.CompanyAchievement.Sum <= 10000) {
-
+                    $("#cGrede4").text(45);
                 }
             }
             if (loan.CompanyAchievement.Pal == 2) {
-
+                if (loan.CompanyAchievement.Sum <= 100) {
+                    $("#cGrede4").text(-5);
+                }
+                if (loan.CompanyAchievement.Sum > 100 && loan.CompanyAchievement.Sum <= 200) {
+                    $("#cGrede4").text(-10);
+                }
+                if (loan.CompanyAchievement.Sum > 100 && loan.CompanyAchievement.Sum <= 200) {
+                    $("#cGrede4").text(-15);
+                }
+                if (loan.CompanyAchievement.Sum > 200 && loan.CompanyAchievement.Sum <= 300) {
+                    $("#cGrede4").text(-20);
+                }
+                if (loan.CompanyAchievement.Sum > 300 && loan.CompanyAchievement.Sum <= 500) {
+                    $("#cGrede4").text(-25);
+                }
+                if (loan.CompanyAchievement.Sum > 500 && loan.CompanyAchievement.Sum <= 1000) {
+                    $("#cGrede4").text(-30);
+                }
+                if (loan.CompanyAchievement.Sum > 1000 && loan.CompanyAchievement.Sum <= 3000) {
+                    $("#cGrede4").text(-35);
+                }
+                if (loan.CompanyAchievement.Sum > 3000 && loan.CompanyAchievement.Sum <= 5000) {
+                    $("#cGrede4").text(-40);
+                }
+                if (loan.CompanyAchievement.Sum > 5000 && loan.CompanyAchievement.Sum <= 10000) {
+                    $("#cGrede4").text(-45);
+                }
+            }
+            //console.log($("#cGrede4").text() < 25 && $("#cGrede4").text() >= 5);
+            if ($("#cGrede4").text() >= 30) {
+                $("#cAch").text("优秀。");
+            }
+            if ($("#cGrede4").text() < 25 && $("#cGrede4").text() >= 5) {
+                $("#cAch").text("良好。");
+            }
+            if ($("#cGrede4").text() < -5 && $("#cGrede4").text() >= -25) {
+                $("#cAch").text("不良。");
+            }
+            if ($("#cGrede4").text() <= -35) {
+                $("#cAch").text("较差。");
             }
             switch (loan.HistoricalCredit.LoanOrNot) {
                 case true:
@@ -202,6 +241,33 @@ $(function () {
                     break;
                 case false:
                     $("#cRepay").text("未还清");
+                    break;
+            }
+            if (!loan.HistoricalCredit.LoanOrNot) {
+                $("#cGrede6").text(5);
+            } else {
+                if (loan.HistoricalCredit.RepayOrNot) {
+                    $("#cGrede6").text(10);
+                } else {
+                    $("#cGrede6").text(-10);
+                }
+            }
+            switch (loan.HistoricalProfit) {
+                case 1:
+                    $("#cPro").text("优秀");
+                    $("#cGrede5").text(50);
+                    break;
+                case 2:
+                    $("#cPro").text(25);
+                    break;
+                case 3:
+                    $("#cPro").text(0);
+                    break;
+                case 4:
+                    $("#cPro").text(-25);
+                    break;
+                case 5:
+                    $("#cPro").text(-50);
                     break;
             }
 
@@ -238,6 +304,12 @@ $(function () {
                     $("#cGrede1").text("95");
                     break;
             }
+            var gradeTotal = parseInt($("#cGrede2").text()) +
+                parseInt($("#cGrede3").text()) +
+                parseInt($("#cGrede4").text()) +
+                parseInt($("#cGrede5").text()) +
+                parseInt($("#cGrede6").text());
+            //console.log(gradeTotal);
             $("#cGrede7").text(verify.RealRange.Score);
             if ($("#cGrede7").text() > $("#cGrede1").text()) {
                 $("#cDis").text("符合");
