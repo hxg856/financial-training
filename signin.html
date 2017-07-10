@@ -43,6 +43,9 @@
                 $(".container").before(data);
             });
             $("#test").click(function() {
+                window.location.href = "home.html";
+            })
+            $("#submit").click(function() {
                 var userID = $("#userID");
                 var userPassword = $("#userPassword");
                 if (!userID.val()) {

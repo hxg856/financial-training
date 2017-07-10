@@ -1,29 +1,30 @@
 $(function () {
     $("#test").click(function () {
-        $.get("data.json", function (data) {
-            $("#cName").text(data.companyID);
-            $("#cCredit").text(data.loanCredit);
-            $("#cGrede1").text(data.grade);
-            $("#cRepayMethod").text(data.repaymentMethod);
-            $("#cRepayTime").text(data.repaymentTime);
-            $("#cGrede2").text(data.grade);
-            $("#cCharater").text(data.characterClass);
-            $("#cGrede3").text(data.grade);
-            $("#cPal").text(data.companyAchievement.pal);
-            $("#cSum").text(data.companyAchievement.sum);
-            $("#cGrede4").text(data.grade);
-            $("#cAch").text(data.companyAchievement.new);
-            $("#cPro").text(data.historicalProfit.new);
-            $("#cGrede5").text(data.grade);
-            $("#cLoan").text(data.historicalCredit.loanOrNot);
-            $("#cRepay").text(data.historicalCredit.repayOrNot);
-            $("#cGrede6").text(data.grade);
-            $("#cGrede7").text(data.grade);
-            $("#cDis").text(data.mortgage);
-        });
+        //        $.get("data.json", function (data) {
+        //            $("#cName").text(data.companyID);
+        //            $("#cCredit").text(data.loanCredit);
+        //            $("#cGrede1").text(data.grade);
+        //            $("#cRepayMethod").text(data.repaymentMethod);
+        //            $("#cRepayTime").text(data.repaymentTime);
+        //            $("#cGrede2").text(data.grade);
+        //            $("#cCharater").text(data.characterClass);
+        //            $("#cGrede3").text(data.grade);
+        //            $("#cPal").text(data.companyAchievement.pal);
+        //            $("#cSum").text(data.companyAchievement.sum);
+        //            $("#cGrede4").text(data.grade);
+        //            $("#cAch").text(data.companyAchievement.new);
+        //            $("#cPro").text(data.historicalProfit.new);
+        //            $("#cGrede5").text(data.grade);
+        //            $("#cLoan").text(data.historicalCredit.loanOrNot);
+        //            $("#cRepay").text(data.historicalCredit.repayOrNot);
+        //            $("#cGrede6").text(data.grade);
+        //            $("#cGrede7").text(data.grade);
+        //            $("#cDis").text(data.mortgage);
+        //        });
+        window.location.href = "home.html";
     });
     $("#submit").click(function () {
-        var companyID = "be5ab4f4fe564b02f58d1a7219a5eeeb";
+        var companyID = sessionStorage.getItem("companyID");
         var data = {
             companyID: companyID
         };
@@ -69,7 +70,7 @@ $(function () {
 
         function enterloanInfo(res) {
             var loan = res.data.company;
-            $("#cCredit").text(loan.LoanAim);
+            $("#cCredit").text(loan.LoanCredit);
             switch (loan.RepaymentMethod) {
                 case 1:
                     $("#cRepayMethod").text("一次性还清");
@@ -119,25 +120,26 @@ $(function () {
                 $("#cGrede2").text("0分");
             }
 
-
-
-
-            switch (loan.LoanCredit) {
+            switch (loan.CharacterClass) {
                 case 1:
                     $("#cCharater").text("优秀/Excellent");
-                    $("#cGrede3").text(10)
+                    $("#cGrede3").text(10);
                     break;
                 case 2:
-                    $("#cCharater").text(5);
+                    $("#cCharater").text("良好/Good");
+                    $("#cGrede3").text(5);
                     break;
                 case 3:
-                    $("#cCharater").text(0);
+                    $("#cCharater").text("一般/Nomal");
+                    $("#cGrede3").text(0);
                     break;
                 case 4:
-                    $("#cCharater").text(-5);
+                    $("#cCharater").text("不良/Bad");
+                    $("#cGrede3").text(-5);
                     break;
                 case 5:
-                    $("#cCharater").text(-10);
+                    $("#cCharater").text("极差/worst");
+                    $("#cGrede3").text(-10);
                     break;
             }
             switch (loan.CompanyAchievement.Pal) {
@@ -309,8 +311,9 @@ $(function () {
                 parseInt($("#cGrede4").text()) +
                 parseInt($("#cGrede5").text()) +
                 parseInt($("#cGrede6").text());
-            //console.log(gradeTotal);
-            $("#cGrede7").text(verify.RealRange.Score);
+            console.log(gradeTotal);
+            //$("#cGrede7").text(verify.RealRange.Score);
+            $("#cGrede7").text(gradeTotal);
             if ($("#cGrede7").text() > $("#cGrede1").text()) {
                 $("#cDis").text("符合");
             } else {
