@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/layout.css">
     <script src="js/jquery.min.js"></script>
+    <script src="js/common.js"></script>
 </head>
 
 <body>
@@ -18,24 +19,20 @@
             <div style="display:block;">
                 <p>请先仔细阅读以下条款，了解清楚风险评估系统详细流程后再进行下一步操作</p>
             </div>
-            <!--
-            <div class="divCenter" id="tiaokuan">
-                xxxxxxxxxxxxxxxxxxxxxxxxxx
-            </div>
--->
             <iframe src="tiaokuan.txt" frameborder="1" width="600px" height="400px"></iframe>
-
             <div style="display:block">
-                <input type="checkbox" id="ensure"><span>我已了解详细流程，确定进行下一步操作</span><br/>
+                <input type="checkbox" id="ensure">
+                <label for="ensure">我已了解详细流程，确定进行下一步操作</label>
             </div>
             <div style="display:block;">
                 <button class="btn btn-default" id="next">确定并进行下一步</button>
+                <button class="btn btn-default" id="returnHome" style="display:inline-block">返回</button>
             </div>
         </div>
     </div>
     <script>
         $(function() {
-            $.get("nav.html",function(data){
+            $.get("nav.html", function(data) {
                 $(".container").before(data);
             });
             $(document).on("click", "#ensure+span", function() {
@@ -53,6 +50,7 @@
                 }
             })
         });
+
     </script>
 </body>
 

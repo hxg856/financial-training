@@ -19,11 +19,10 @@
                 <div class="form-group">
                     <label for="searchReport" class="col-sm-4 col-md-4 col-lg-4 control-label">请输入公司名称</label>
                     <div class="col-sm-8 col-md-4 col-lg-4">
-                        <input type="text" class="form-control" id="searchReport" placeholder="请输入19位客户账号">
+                        <input type="text" class="form-control" id="searchReport" placeholder="请输入公司名称">
                     </div>
                 </div>
-                <div class="divCenter">
-                    <button id="search" class="btn btn-default">查询</button>
+                <div class="divCenter"><button id="search" class="btn btn-default">查询</button>
                 </div>
             </div>
         </div>
@@ -36,9 +35,8 @@
             });
             $("#search").click(function() {
                 var companyName = $("#searchReport").val();
-
                 if (!companyName) {
-                    alert("公司ID不能为空，请重新输入）");
+                    alert("公司名称不能为空，请重新输入）");
                     return false;
                 }
                 //                if (!testUserID(companyName)) {
@@ -54,7 +52,9 @@
                     dataType: "json",
                     data: data,
                     success: function(res) {
-                        //存报告，显示报告
+                        sessionStorage.setItem("companyID", res.data.report[0].CompanyID);
+                        console.log(sessionStorage.getItem("companyID"));
+                        window.location.href = "companyReport.html";
                     },
                     error: function(res) {
 
@@ -62,7 +62,6 @@
                 });
             })
         })
-
     </script>
 </body>
 

@@ -17,8 +17,6 @@
         <button id="search_company1">search_company无参数</button>
         <button id="search_loan">search_loan带参数</button>
         <button id="search_loan1">search_loan无参数</button>
-        <button id="get_myself">get_myself</button>
-        <button id="deleteReport">deleteReport</button>
     </div>
     <script>
         $(function() {
@@ -194,36 +192,8 @@
 
                 });
             });
-            $("#get_myself").click(function() {
-                $.ajax({
-                    url: "http://119.29.236.25/get_myself",
-                    type: "GET",
-                    dataType: "json",
-                    success: function(res) {
-                        //console.log(res);
-                        var userPosition = res.data.user.userPosition;
-                        console.log(userPosition);
-                    }
-                });
-            });
-            $("#deleteReport").click(function() {
-                var data = {
-                    reportID: "1499697338601"
-                };
-                $.ajax({
-                    url: "http://119.29.236.25/delete_report",
-                    type: "POST",
-                    dataType: "json",
-                    data: data,
-                    success: function(res) {
-                        //删除报告
-                        console.log(res);
-                    },
-                    error: function(res) {
 
-                    }
-                });
-            })
+
 
         })
 

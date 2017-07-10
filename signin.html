@@ -39,19 +39,22 @@
     <script src="js/verify.js"></script>
     <script>
         $(function() {
-            $.get("nav.html", function(data) {
-                $(".container").before(data);
-            });
+            //测试用，跳过登录
             $("#test").click(function() {
                 window.location.href = "home.html";
             })
+            //
             $("#submit").click(function() {
+                //获取输入框信息
                 var userID = $("#userID");
                 var userPassword = $("#userPassword");
+                //验证输入信息不为空且符合要求
                 if (!userID.val()) {
                     if (!userID.next().hasClass("bg-danger")) {
                         var $alertInfo = $("<div class='bg-danger'>客户账号不能为空，请输入19位数字客户账号！</div>");
                         $("#userID").after($alertInfo);
+                        return false;
+                    } else {
                         return false;
                     }
                 }
@@ -60,12 +63,16 @@
                         var $alertInfo = $("<div class='bg-danger'>客户密码不能为空，请输入6位数字客户密码！</div>");
                         $("#userPassword").after($alertInfo);
                         return false;
+                    } else {
+                        return false;
                     }
                 }
                 if (!testUserID(userID.val())) {
                     if (!userID.next().hasClass("bg-danger")) {
                         var $alertInfo = $("<div class='bg-danger'>请按照正确格式输入客户账号！</div>");
                         $("#userID").after($alertInfo);
+                        return false;
+                    } else {
                         return false;
                     }
                 }
@@ -74,8 +81,11 @@
                         var $alertInfo = $("<div class='bg-danger'>请按照正常格式输入客户密码!</div>");
                         $("#userPassword").after($alertInfo);
                         return false;
+                    } else {
+                        return false;
                     }
                 }
+                //准备数据并发送数据
                 var data = {
                     userID: userID.val(),
                     userPassword: userPassword.val()
@@ -103,7 +113,8 @@
                                     break;
                                 case 613:
                                     alert("账户已经登录，请不要重复登录！");
-                                    window.location.href = "home.html"
+                                    return false;
+                                    //window.location.href = "home.html"
                             }
                         }
                     },

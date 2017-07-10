@@ -13,7 +13,7 @@ $(function () {
             $("#afname").before($name);
         }
     });
-    $("#exit").click(function () {
+    $("#exit1").click(function () {
         alert("xxx");
         var data = {
             userID: userID

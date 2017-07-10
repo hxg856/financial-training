@@ -16,8 +16,9 @@
         </div>
         <div class="bodypart divCenter">
             <button class="btn btn-default btn-lg" id="revisePassword">修改密码</button>
-            <button class="btn btn-default btn-lg" id="riskEvaluation">风险评估</button>
+            <button class="btn btn-default btn-lg" id="createCompany">创建公司并输入贷款信息</button>
             <button class="btn btn-default btn-lg" id="queryReport">查询报告</button>
+            <button class="btn btn-default btn-lg" id="deleteReport">删除报告</button>
         </div>
     </div>
     <script>
@@ -28,14 +29,18 @@
             $("#revisePassword").click(function() {
                 window.location.href = "revisepassword.html";
             });
-            $("#riskEvaluation").click(function() {
+            $("#createCompany").click(function() {
                 window.location.href = "beforeevaluation.html";
             });
-            //显示报告未完成
             $("#queryReport").click(function() {
-                window.location.href = "companyReport.html";
+                window.location.href = "searchREport.html";
             });
+            $("#deleteReport").click(function() {
+                window.location.href = "deleteReport.html";
+            });
+            //非管理员禁用删除
         })
+
     </script>
 </body>
 
