@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/layout.css">
     <script src="js/jquery.min.js"></script>
+    <script src="js/common.js"></script>
     <style>
         span {
             background-color: aqua;
         }
-
     </style>
 </head>
 
@@ -22,46 +22,44 @@
         </div>
         <div class="bodypart">
             <div>
-                <p>贷款申请方：<span id="ccName">公司名称</span></p>
-                <p>本报告的ID（请记住本ID，这是唯一找到本报告的凭证）：<span id="reportID">1231546</span></p>
+                <p>贷款申请方：<span id="ccName"></span></p>
+                <p>本报告的ID（请记住本ID，这是唯一找到本报告的凭证）：<span id="reportID"></span></p>
                 <ul>
                     <li>
-                        <span id="cName">公司名称</span>欲申请
-                        <span id="cCredit">XX（贷款金额）金额</span>万的贷款，该金额要求评分为
-                        <span id="cGrede1">XX（评级对应的分数）</span>分以上。</li>
+                        <span id="cName"></span>欲申请
+                        <span id="cCredit"></span>万的贷款，该金额要求评分为
+                        <span id="cGrede1"></span>分以上。</li>
                     <li>该公司采用
-                        <span id="cRepayMethod">XX（还款方式）</span>方式，申请在
-                        <span id="cRepayTime">XX（还款时间）</span>月时间内还清，项目评分为
-                        <span id="cGrede2">XX（该项评分）</span>分</li>
+                        <span id="cRepayMethod"></span>方式，申请在
+                        <span id="cRepayTime"></span>月时间内还清，项目评分为
+                        <span id="cGrede2"></span>分</li>
                     <li>该公司借款人品质
-                        <span id="cCharater">XX（五个等级</span>，项目评分
-                        <span id="cGrede3">XX</span>分。</li>
+                        <span id="cCharater"></span>，项目评分
+                        <span id="cGrede3"></span>分。</li>
                     <li>公司业绩为
-                        <span id="cPal">盈利/亏损</span>
-                        <span id="cSum">XXX（金额</span>，项目评分
-                        <span id="cGrede4">XX</span>分。该公司业务能力
-                        <span id="cAch">优秀（30-45）/良好（5-25）/不良（-5--25）/较差（-30--45</span></li>
+                        <span id="cPal"></span>
+                        <span id="cSum"></span>，项目评分
+                        <span id="cGrede4"></span>分。该公司业务能力
+                        <span id="cAch"></span></li>
                     <li> 该公司过去1年内利润能力
-                        <span id="cPro">优秀（K>=0.25）/良好（0.25>K>=0.05）/一般（0.05>K>=-0.0.5）/不良（-0.05>K>=-0.25）/极差（-0.25>=K）</span>，项目得分为
-                        <span id="cGrede5">XX</span>分。</li>
+                        <span id="cPro"></span>，项目得分为
+                        <span id="cGrede5"></span>分。</li>
                     <li>该公司：
-                        <span id="cLoan">无信贷历史/有信贷历史</span>且
-                        <span id="cRepay">已还清/有信贷历史且未还清</span>，项目评分为
-                        <span id="cGrede6">XX</span>分</li>
+                        <span id="cLoan"></span>且
+                        <span id="cRepay"></span>，项目评分为
+                        <span id="cGrede6"></span>分</li>
                     <li>经评定，该公司的贷款申请最终评分为
-                        <span id="cGrede7">XX（</span>分，
-                        <span id="cDis">符合/不符合</span>要求。</li>
+                        <span id="cGrede7"></span>分，
+                        <span id="cDis"></span>要求。</li>
                 </ul>
             </div>
             <div class="divCenter">
                 <button id="submit" class="btn btn-default">显示结果</button>
-                <button id="test" class="btn btn-default">退出</button>
+                <button id="returnHome" class="btn btn-default">退出</button>
             </div>
         </div>
     </div>
     <script src="js/verification.js">
-
-
     </script>
 </body>
 
