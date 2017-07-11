@@ -24,8 +24,8 @@ $(function () {
         window.location.href = "home.html";
     });
     $("#submit").click(function () {
-        //var companyID = localStorage.getItem("companyID");
-        var companyID = "b6a1a9f8e6964dc0a568f5a4929ce76e";
+        var companyID = localStorage.getItem("companyID");
+        //var companyID = "b6a1a9f8e6964dc0a568f5a4929ce76e";
         var data = {
             companyID: companyID
         };

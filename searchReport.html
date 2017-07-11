@@ -52,9 +52,24 @@
                     dataType: "json",
                     data: data,
                     success: function(res) {
-                        sessionStorage.setItem("companyID", res.data.report[0].CompanyID);
-                        console.log(sessionStorage.getItem("companyID"));
-                        window.location.href = "companyReport.html";
+                        switch (res.data.state) {
+                            case 600:
+                                sessionStorage.setItem("companyID", res.data.report[0].CompanyID);
+                                sessionStorage.setItem("companyName", data.companyName)
+                                console.log(sessionStorage.getItem("companyID"));
+                                window.location.href = "companyReport.html";
+                                return false;
+                                break;
+                            case 615:
+                                alert("公司名称为空！");
+                                return false;
+                                break;
+                            case 625:
+                                alert("没有找到该公司，请重新输入！");
+                                return false;
+                                break;
+                                //window.location.href = "home.html"
+                        }
                     },
                     error: function(res) {
 
@@ -62,6 +77,7 @@
                 });
             })
         })
+
     </script>
 </body>
 

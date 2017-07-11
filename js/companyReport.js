@@ -3,7 +3,7 @@ $(function () {
     //$("#test").click(function () {
     var companyID = sessionStorage.getItem("companyID");
     //var companyID = "b6a1a9f8e6964dc0a568f5a4929ce76e";
-    var companyName = "hxg";
+    var companyName = sessionStorage.getItem("companyName");
     var data = {
         companyID: companyID
     };
